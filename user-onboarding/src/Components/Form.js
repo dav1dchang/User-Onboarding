@@ -16,11 +16,14 @@ function Form(props) {
         change(name, valueToUse); 
     };
 
+    const disabled = () => {
+        return !values.name.trim() || !values.email.trim() || !values.password.trim() || !values.tos 
+    }
+
     return (
         <form className='form-container' onSubmit={onSubmit}> 
             <div className='form-group submit'>
-                <h2>User Onboarding Form</h2>
-                <button>Submit</button>
+                <button id='submit' disabled={disabled()}>Submit</button>
                 <div className='errors'>
                     <div>{errors.name}</div>
                     <div>{errors.email}</div>
