@@ -21,17 +21,7 @@ function Form(props) {
     }
 
     return (
-        <form className='form-container' onSubmit={onSubmit}> 
-            <div className='form-group submit'>
-                <button id='submit' disabled={disabled()}>Submit</button>
-                <div className='errors'>
-                    <div>{errors.name}</div>
-                    <div>{errors.email}</div>
-                    <div>{errors.password}</div>
-                    <div>{errors.tos}</div>
-                </div>
-            </div>
-           
+        <form className='form-container' onSubmit={onSubmit}>       
             <div className='form-group inputs'>
                 <label>
                     Name: 
@@ -40,17 +30,21 @@ function Form(props) {
                         onChange={onChange}
                         name='name'
                         type='text'
+                        placeholder='John Doe'
                     />
                 </label>
+                { errors.name.length > 0 && <p className='error'>{errors.name}</p> }
                 <label>
                     Email: 
                     <input 
                         value={values.email}
                         onChange={onChange}
                         name='email'
-                        type='text'
+                        type='email'
+                        placeholder='example@123.com'
                     />
                 </label>
+                { errors.email.length > 0 && <p className='error'>{errors.email}</p> }
                 <label>
                     Password: 
                     <input 
@@ -58,8 +52,10 @@ function Form(props) {
                         onChange={onChange}
                         name='password'
                         type='text'
+                        placeholder='Password'
                     />
                 </label>
+                { errors.password.length > 0 && <p className='error'>{errors.password}</p> }
             </div>
             <div className='form-group checkbox'>
                 <label> I have read and agree to the Terms of Service
@@ -71,6 +67,7 @@ function Form(props) {
                     />
                 </label>
             </div>
+            <button id='submit' disabled={disabled()}>Submit</button>
         </form>
     );
 }

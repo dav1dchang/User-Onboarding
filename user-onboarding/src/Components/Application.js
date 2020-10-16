@@ -82,7 +82,12 @@ function Application() {
       />
       <div className="user-wrapper">
         {users.map((user) => {
-          return <Users key={user.id} userOBJ={user}/>
+          return <Users 
+            key={user.id} 
+            name={user.name}
+            email={user.email}
+            password={user.password}
+            />
           })}
       </div>
     </div>

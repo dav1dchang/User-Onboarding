@@ -57,6 +57,7 @@ describe('User Onboarding App', () => {
             nameInput().type('Alex Rodriguez')
             emailInput().type('alexrodriguez@steroids.com')
             passwordInput().type('biogenesis')
+            checkbox().click()
             submitForm().click()
             cy.contains(/Alex Rodriguez/).should('exist')
             cy.contains(/alexrodriguez@steroids.com/).should('exist')
@@ -64,7 +65,12 @@ describe('User Onboarding App', () => {
         })
 
         it('can validate whether an input was left empty', () => {
-
+            nameInput().type('Name written')
+            emailInput().type('Test@test.com')
+            emailInput().clear()
+            passwordInput().type('testpassword')
+            checkbox().click()
+            cy.contains(/Please enter an email address/).should('exist')
         })
         
     })//describe submitting a form & validation
